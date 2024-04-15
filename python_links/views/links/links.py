@@ -17,7 +17,7 @@ def links() -> rx.Component:
                     "https://twitch.com"),
         link_button("Github",
                     "Mi perfil de Github",
-                    "/icons/Github.svg",
+                    "/icons/github.svg",
                     "https://twitch.com"),
         link_button("Discord",
                     "El chat de la comunidad",
