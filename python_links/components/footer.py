@@ -3,6 +3,7 @@ import datetime
 from python_links.styles.styles import Size as Size
 from python_links.styles.colors import TextColor as TextColor
 from python_links.styles.colors import Color as Color
+import python_links.constants as const
 
 def footer() -> rx.Component:
     return rx.center(
@@ -16,17 +17,29 @@ def footer() -> rx.Component:
                 rx.box(
                     f"© 2024-{datetime.date.today().year} ",
                     rx.chakra.span("Juanppdev by MundoCode", color=Color.PRIMARY.value),
-                    " v1."
+                    " v1.",
+                    padding_top=Size.DEFAULT.value
                 ),
                 href="",
                 is_external=True,
                 font_size=Size.MEDIUM.value
             ),
-            rx.text(
-                "BUILDING SOFTWARE WITH ♥ FROM STADE TO THE WORLD.",
-                font_size=Size.MEDIUM.value,
-                margin_top=Size.ZERO.value
+            rx.hstack(
+                rx.link(
+                    rx.image(
+                        src="icons/github.svg",
+                        height=Size.DEFAULT.value,
+                        width=Size.DEFAULT.value
+                    ),
+                    href=const.REPOSITORY_URL,
+                    is_external=True
                 ),
+                rx.text(
+                    "BUILDING SOFTWARE WITH ♥ FROM STADE TO THE WORLD.",
+                    font_size=Size.MEDIUM.value,
+                    margin_top=Size.ZERO.value
+                )
+            ),
             align="center",
             margin_bottom=Size.BIG.value,
             padding_bottom=Size.BIG.value,
