@@ -61,15 +61,15 @@ def header() -> rx.Component:
             spacing="4"
         ),
         rx.flex(
-            info_text("+13", "Anos de Experiencia"),
+            info_text("+2", "Anos de Experiencia"),
             rx.spacer(),
-            info_text("+13", "Anos de Experiencia"),
+            info_text("+1", "Aplicaciones creadas"),
             rx.spacer(),
-            info_text("+13", "Anos de Experiencia"),
+            info_text("+5", "Seguidores"),
             width="100%",
         ),
         rx.text(
-            "Soy Ingeniero de Software",
+            "A los 25 años, descubrí mi pasión por la programación a través de la plataforma de aprendizaje Platzi mientras navegaba por la web. Desde entonces, me he inmerso en este mundo en constante evolución, explorando nuevas tecnologías y conceptos diariamente. Aunque mi enfoque inicial fue en la creación de páginas web, he ampliado mis horizontes explorando diferentes lenguajes y disciplinas.",
             color=TextColor.BODY.value,
             font_size=Size.DEFAULT.value,
         ),
