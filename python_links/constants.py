@@ -1,16 +1,17 @@
 # Cabecera
-GITHUB_URL="https://github.com/juanppdev"
-X_URL="https://twitter.com/Juanppdev_"
-INSTAGRAM_URL="https://www.instagram.com/juanppdev/"
-TIKTOK_URL="https://www.tiktok.com/@juanppdev"
-LINKEDIN_URL="https://www.linkedin.com/in/juanppdev/"
+GITHUB_URL="https://link.mundocode.dev/Github"
+X_URL="https://link.mundocode.dev/x"
+INSTAGRAM_URL="https://link.mundocode.dev/Instagram"
+TIKTOK_URL="https://link.mundocode.dev/Tiktok"
+LINKEDIN_URL="https://link.mundocode.dev/Linkedin"
 
 #Comunidad
-TWITCH_URL=""
-YOUTUBE_URL=""
-DISCORD_URL=""
+TWITCH_URL="https://link.mundocode.dev/Twitch"
+YOUTUBE_URL="https://link.mundocode.dev/Youtube"
+DISCORD_URL="https://link.mundocode.dev/Discord"
 
 # Recursos y mas
+DRAGON_API="https://link.mundocode.dev/DragonBallApi"
 
 # Footer
-REPOSITORY_URL="https://github.com/juanppdev/Codelinks"
+REPOSITORY_URL="https://link.mundocode.dev/Codelinks"

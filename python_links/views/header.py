@@ -14,7 +14,7 @@ def header() -> rx.Component:
                 src="/perfil.jpg",
                 name="Juanppdev",
                 fallbac="JP", 
-                size="8", 
+                size="7", 
                 radius="full",
                 padding="2px",
                 border="4px solid",
@@ -28,7 +28,7 @@ def header() -> rx.Component:
                 rx.text(
                     "@Juanppdev",
                     margin_top=Size.ZERO.value,
-                    color=TextColor.BODY.value
+                    color=Color.PRIMARY.value
                 ),
                 rx.hstack(
                     link_icon(
@@ -51,10 +51,13 @@ def header() -> rx.Component:
                         "icons/linkedin.svg",
                         const.LINKEDIN_URL
                     ),
-                    spacing="4"
+                    spacing="4",
+                    padding_top=Size.SMALL.value
                 ),
-                align_items="start",
+                padding_top=Size.ZERO.value,
+                align_items="start"
             ),
+            align="end",
             spacing="4"
         ),
         rx.flex(
