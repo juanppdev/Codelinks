@@ -30,6 +30,11 @@ def links() -> rx.Component:
                     const.DRAGON_API,
                     ),
         title("Contacto"),
+        link_button("juanppdev@gmail.com", 
+                    "Api de Dradon Ball",
+                    "/icons/email.svg",
+                    "mailto:juanppdev@gmail.com",
+                    ),
         width="100%",
         spacing="2"
     )
