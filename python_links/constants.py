@@ -12,6 +12,7 @@ DISCORD_URL="https://link.mundocode.dev/Discord"
 
 # Recursos y mas
 DRAGON_API="https://link.mundocode.dev/DragonBallApi"
+BLOG = "https://link.mundocode.dev/blog"
 
 # Footer
 REPOSITORY_URL="https://link.mundocode.dev/Codelinks"
