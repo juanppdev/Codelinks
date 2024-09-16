@@ -40,6 +40,11 @@ def links() -> rx.Component:
                     "/icons/email.svg",
                     "mailto:juanppdev@gmail.com",
                     ),
+        link_button("Portafolio", 
+                    "Aqui encontrás más información sobre mi",
+                    "/icons/portfolio.svg",
+                    const.PORTFOLIO,
+                    ),
         width="100%",
         spacing="2"
     )

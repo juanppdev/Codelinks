@@ -16,3 +16,6 @@ BLOG = "https://link.mundocode.dev/blog"
 
 # Footer
 REPOSITORY_URL="https://link.mundocode.dev/Codelinks"
+
+# Contacto
+PORTFOLIO = "https://link.mundocode.dev/portafolio"
