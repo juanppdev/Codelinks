@@ -4,6 +4,7 @@ from python_links.styles.styles import Size as Size
 from python_links.styles.colors import TextColor as TextColor
 from python_links.styles.colors import Color as Color
 import python_links.constants as const
+from python_links.components.ant_components import float_button
 
 def footer() -> rx.Component:
     return rx.center(
@@ -40,6 +41,7 @@ def footer() -> rx.Component:
                     margin_top=Size.ZERO.value
                 )
             ),
+            float_button(),
             align="center",
             margin_bottom=Size.BIG.value,
             padding_bottom=Size.BIG.value,
