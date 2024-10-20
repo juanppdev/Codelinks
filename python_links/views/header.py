@@ -1,7 +1,9 @@
 import reflex as rx
+import datetime
 from python_links.components.link_icon import link_icon
 from python_links.components.info_text import info_text
 from python_links.styles.styles import Size as Size
+from python_links.styles.styles import Spacing as Spacing
 from python_links.styles.colors import TextColor as TextColor
 from python_links.styles.colors import Color as Color
 from python_links.styles.fonts import Font as Font
@@ -10,20 +12,20 @@ import python_links.constants  as const
 def header() -> rx.Component:
     return rx.vstack(
         rx.hstack(
-            rx.avatar(
-                src="/perfil.jpg",
-                name="Juanppdev",
-                fallbac="JP", 
-                size="7", 
-                radius="full",
-                padding="2px",
-                border="4px solid",
-                border_color=Color.PRIMARY.value
-            ),
+                rx.avatar(
+                    name="Juanppdev",
+                    size=Spacing.MEDIUM_BIG.value,
+                    src="/perfil.jpg",
+                    radius="full",
+                    color=TextColor.BODY.value,
+                    bg=Color.CONTENT.value,
+                    padding="2px",
+                    border=f"4px solid {Color.PRIMARY.value}"
+                ),
             rx.vstack(
                 rx.heading(
                     "Juan Pablo",
-                    size= "7",
+                    size=Size.BIG.value
                 ),
                 rx.text(
                     "@Juanppdev",
@@ -54,26 +56,41 @@ def header() -> rx.Component:
                     spacing="4",
                     padding_top=Size.SMALL.value
                 ),
-                padding_top=Size.ZERO.value,
+                spacing=Spacing.ZERO.value,
                 align_items="start"
             ),
             align="end",
-            spacing="4"
+            spacing=Spacing.DEFAULT.value
         ),
-        rx.flex(
-            info_text("+2", "Anos de Experiencia"),
-            rx.spacer(),
-            info_text("+1", "Aplicaciones creadas"),
-            rx.spacer(),
-            info_text("+5", "Seguidores"),
-            width="100%",
+            rx.vstack(
+                rx.flex(
+                    info_text(
+                        f"{experience()}+",
+                        "años de experiencia"
+                    ),
+                    rx.spacer(),
+                    info_text(
+                        "1+", "aplicaciones creadas"
+                    ),
+                    rx.spacer(),
+                    info_text(
+                        "5+", "seguidores"
+                    ),
+                    width="100%"
+                ),
+                rx.text(
+                    "A los 20 años, descubrí mi pasión por la programación a través de la plataforma de aprendizaje Platzi mientras navegaba por la web. Desde entonces, me he inmerso en este mundo en constante evolución, explorando nuevas tecnologías y conceptos diariamente. Aunque mi enfoque inicial fue en la creación de páginas web, he ampliado mis horizontes explorando diferentes lenguajes y disciplinas.",
+                    font_size=Size.DEFAULT.value,
+                    color=TextColor.BODY.value
+                ),
+                width="100%",
+                spacing=Spacing.BIG.value
         ),
-        rx.text(
-            "A los 25 años, descubrí mi pasión por la programación a través de la plataforma de aprendizaje Platzi mientras navegaba por la web. Desde entonces, me he inmerso en este mundo en constante evolución, explorando nuevas tecnologías y conceptos diariamente. Aunque mi enfoque inicial fue en la creación de páginas web, he ampliado mis horizontes explorando diferentes lenguajes y disciplinas.",
-            color=TextColor.BODY.value,
-            font_size=Size.DEFAULT.value,
-        ),
-        spacing="4",
+        width="100%",
+        spacing=Spacing.BIG.value,
         align_items="start",
-        width="100%"
     )
+
+
+def experience() -> int:
+    return datetime.date.today().year - 2022
