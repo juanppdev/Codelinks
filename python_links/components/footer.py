@@ -17,7 +17,11 @@ def footer() -> rx.Component:
             rx.link(
                 rx.box(
                     f"© 2024-{datetime.date.today().year} ",
-                    rx.chakra.span("Juanppdev by MundoCode", color=Color.PRIMARY.value),
+                    rx.text(
+                        "Juanppdev by MundoCode",
+                        as_="span",
+                        color=Color.PRIMARY.value
+                        ),
                     " v1.",
                     padding_top=Size.DEFAULT.value
                 ),
@@ -41,10 +45,13 @@ def footer() -> rx.Component:
                     margin_top=Size.ZERO.value
                 )
             ),
-            float_button(),
+            float_button(
+                icon=rx.image(src="/icons/donation.svg"),
+                href=const.COFFEE_URL
+            ),
             align="center",
             margin_bottom=Size.BIG.value,
-            padding_bottom=Size.BIG.value,
+            padding_bottom=Size.VERY_BIG.value,
             padding_x= Size.BIG.value,
             spacing="0",
             color=TextColor.FOOTER.value

@@ -5,8 +5,9 @@ from python_links.styles.colors import Color as Color
 
 def info_text(title: str, body: str) -> rx.Component:
     return rx.box(
-        rx.chakra.span(
+        rx.text(
             title, 
+            as_="span",
             font_weight="bold", 
             color=Color.PRIMARY.value
         ),

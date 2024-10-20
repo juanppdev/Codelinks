@@ -9,8 +9,8 @@ def navbar() -> rx.Component:
     return rx.hstack(
         rx.link(
             rx.box(
-                rx.chakra.span("Juanpp", color=Color.PRIMARY.value),
-                rx.chakra.span("dev", color=Color.SECONDARY.value),
+                rx.text("Juanpp", as_="span", color=Color.PRIMARY.value),
+                rx.text("dev", as_="span", color=Color.SECONDARY.value),
                 style=styles.navbar_title_style
             ),
             href=Route.INDEX.value
