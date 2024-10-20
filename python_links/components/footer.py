@@ -33,8 +33,8 @@ def footer() -> rx.Component:
                 rx.link(
                     rx.image(
                         src="icons/github.svg",
-                        height=Size.DEFAULT.value,
-                        width=Size.DEFAULT.value
+                        height=Size.LARGE.value,
+                        width=Size.LARGE.value
                     ),
                     href=const.REPOSITORY_URL,
                     is_external=True
