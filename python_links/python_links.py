@@ -7,10 +7,10 @@ app = rx.App(
     stylesheets=styles.STYLESHEETS,
     style=styles.BASE_STYLE,
     head_components=[
-        rx.script(
+        rx.el.script(
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6885891243934075",
             async_=True,
-            cross_origin="anonymous"
+            crossorigin="anonymous"
         )
     ]
 )
