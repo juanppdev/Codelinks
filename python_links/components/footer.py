@@ -10,7 +10,7 @@ def footer() -> rx.Component:
     return rx.center(
         rx.vstack(
             rx.image(
-                src="MundoCode.png",
+                src="/MundoCode.png",
                 height=Size.VERY_BIG.value,
                 width=Size.VERY_BIG.value
             ),
@@ -32,7 +32,7 @@ def footer() -> rx.Component:
             rx.hstack(
                 rx.link(
                     rx.image(
-                        src="icons/github.svg",
+                        src="/icons/github.svg",
                         height=Size.LARGE.value,
                         width=Size.LARGE.value
                     ),

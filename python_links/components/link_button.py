@@ -2,7 +2,7 @@ import reflex as rx
 import python_links.styles.styles as styles
 from python_links.styles.styles import Size as Size
 
-def link_button(title: str, body: str, image: str, url: str) -> rx.Component:
+def link_button(title: str, body: str, image: str, url: str, external: bool) -> rx.Component:
     return rx.link(
         rx.button(
             rx.hstack(
@@ -30,6 +30,6 @@ def link_button(title: str, body: str, image: str, url: str) -> rx.Component:
             )
         ),
         href=url,
-        is_external=True,
+        is_external=external,
         width="100%"
     )
