@@ -13,7 +13,7 @@ def projects_links() -> rx.Component:
             "Mis proyectos",
             size=Size.BIG.value
         ),
-        link_button(),
+        #link_button(),
 
         width="100%",
         spacing=Spacing.DEFAULT.value,
