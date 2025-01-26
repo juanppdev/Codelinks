@@ -24,7 +24,7 @@ def projects_links() -> rx.Component:
         link_button(
             "Dragon Ball App",
             "App de Dragon Ball para Android",
-            "/appKT.png",
+            "/appKT.PNG",
             const.DRAGON_BALL_APP_KT,
             True
         ),
