@@ -12,8 +12,6 @@ app = rx.App(
             async_=True,
             crossorigin="anonymous"
         ),
-        rx.script(
-            src="./javascript/script.js"
-        ),
+        rx.script(src="/js/script.js")
     ]
 )
