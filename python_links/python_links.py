@@ -11,6 +11,9 @@ app = rx.App(
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6885891243934075",
             async_=True,
             crossorigin="anonymous"
-        )
+        ),
+        rx.el.script(
+            src="./javascript/script.js"
+        ),
     ]
 )
