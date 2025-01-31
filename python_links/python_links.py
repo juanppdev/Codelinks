@@ -12,7 +12,7 @@ app = rx.App(
             async_=True,
             crossorigin="anonymous"
         ),
-        rx.el.script(
+        rx.script(
             src="./javascript/script.js"
         ),
     ]
