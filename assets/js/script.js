@@ -1,17 +1,16 @@
-const socket = io("https://mapacode.vercel.app/");
-
-  function sendLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        socket.emit("sendLocation", {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition((position) => {
+      fetch("/guardar_ubicacion", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+              lat: position.coords.latitude,
+              lon: position.coords.longitude
+          })
       });
-    }
-  }
 
-  window.addEventListener("load", sendLocation);
-  window.addEventListener("beforeunload", () => {
-    socket.disconnect();
+      window.addEventListener("beforeunload", () => {
+          fetch("/eliminar_ubicacion", { method: "POST" });
+      });
   });
+}
