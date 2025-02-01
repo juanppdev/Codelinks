@@ -49,7 +49,7 @@ def obtener_ubicacion():
 
                         // Obtener país desde la IP
                         try {
-                            const response = await fetch("https://ipinfo.io/json?token=TU_TOKEN");
+                            const response = await fetch("https://ipinfo.io/json?token=7ce6f02ebdc5a2");
                             const data = await response.json();
                             country = data.country || "Desconocido";
                         } catch (error) {
@@ -61,7 +61,7 @@ def obtener_ubicacion():
                     async () => {
                         // Si el usuario deniega la geolocalización, usar IP
                         try {
-                            const response = await fetch("https://ipinfo.io/json?token=TU_TOKEN");
+                            const response = await fetch("https://ipinfo.io/json?token=7ce6f02ebdc5a2");
                             const data = await response.json();
                             [lat, lon] = data.loc.split(",").map(Number);
                             country = data.country || "Desconocido";
