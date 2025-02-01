@@ -2,12 +2,11 @@ import reflex as rx
 import python_links.styles.styles as styles
 from python_links.pages.index import index
 from python_links.pages.projects import projects
-from firebase_config import firebase_db
-import uuid
-import requests
 
-def location():
-    return rx.script("""import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+def location() -> rx.Component:
+    return rx.script(
+        """
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getDatabase, ref, set, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
     // 🔥 Configuración de Firebase
@@ -80,17 +79,37 @@ def location():
         });
       }
     }
-    enviarUbicacion();""",type="module")
+    enviarUbicacion();
+
+    // 🗺️ Configurar mapa con Leaflet
+    const map = L.map("map").setView([20, 0], 2);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+    let markers = {};
+
+    // 📡 Escuchar cambios en Firebase y actualizar el mapa
+    const usuariosRef = ref(db, "usuarios");
+    onValue(usuariosRef, (snapshot) => {
+      const data = snapshot.val() || {};
+      Object.values(markers).forEach(marker => marker.remove());
+      markers = {};
+    });
+        """,
+        type="module"
+    )
+
+def scripts() -> rx.Component:
+    return rx.script("https://unpkg.com/leaflet/dist/leaflet.js")
 
 app = rx.App(
-    stylesheets=styles.STYLESHEETS,
+    stylesheets= [
+        "https://unpkg.com/leaflet/dist/leaflet.css"
+    ],
     style=styles.BASE_STYLE,
     head_components=[
-        rx.script(src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js", type="module"),
-        rx.script(src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js", type="module"),
         location(),
-        # otros componentes...
-        rx.el.script(
+        scripts(),
+        rx.script(
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6885891243934075",
             async_=True,
             crossorigin="anonymous"
