@@ -5,14 +5,18 @@ from python_links.pages.projects import projects
 from firebase_config import firebase_db
 import uuid
 
+import requests
+
+
 class State(rx.State):
     user_id: str = str(uuid.uuid4())
 
-    def guardar_ubicacion(self, lat, lon):
+    def guardar_ubicacion(self, lat, lon, country):
         """Guarda la ubicación del usuario en Firebase."""
         firebase_db.child(self.user_id).set({
             "lat": lat,
             "lon": lon,
+            "country": country,
             "timestamp": rx.utils.time.now()
         })
 
@@ -22,22 +26,50 @@ class State(rx.State):
 
 def obtener_ubicacion():
     return rx.script("""
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                fetch("/guardar_ubicacion", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        lat: position.coords.latitude,
-                        lon: position.coords.longitude
-                    })
-                });
+        async function getLocation() {
+            let lat = null, lon = null, country = "Desconocido";
 
-                window.addEventListener("beforeunload", () => {
-                    fetch("/eliminar_ubicacion", { method: "POST" });
+            // Primero intentamos obtener la ubicación del navegador
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+
+                    // Obtener país desde la IP
+                    const response = await fetch("https://ipapi.co/json/");
+                    const data = await response.json();
+                    country = data.country_name || "Desconocido";
+
+                    fetch("/guardar_ubicacion", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ lat, lon, country })
+                    });
+
+                    window.addEventListener("beforeunload", () => {
+                        fetch("/eliminar_ubicacion", { method: "POST" });
+                    });
+                }, async () => {
+                    // Si el usuario deniega la geolocalización, obtenemos la ubicación por IP
+                    const response = await fetch("https://ipapi.co/json/");
+                    const data = await response.json();
+                    lat = data.latitude;
+                    lon = data.longitude;
+                    country = data.country_name || "Desconocido";
+
+                    fetch("/guardar_ubicacion", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ lat, lon, country })
+                    });
+
+                    window.addEventListener("beforeunload", () => {
+                        fetch("/eliminar_ubicacion", { method: "POST" });
+                    });
                 });
-            });
+            }
         }
+        getLocation();
     """)
 
 app = rx.App(
