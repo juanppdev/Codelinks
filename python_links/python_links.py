@@ -4,9 +4,7 @@ from python_links.pages.index import index
 from python_links.pages.projects import projects
 from firebase_config import firebase_db
 import uuid
-
 import requests
-
 
 class State(rx.State):
     user_id: str = str(uuid.uuid4())
@@ -24,51 +22,59 @@ class State(rx.State):
         """Elimina la ubicación del usuario al salir de la web."""
         firebase_db.child(self.user_id).delete()
 
+
 def obtener_ubicacion():
     return rx.script("""
         async function getLocation() {
             let lat = null, lon = null, country = "Desconocido";
 
-            // Primero intentamos obtener la ubicación del navegador
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(async (position) => {
-                    lat = position.coords.latitude;
-                    lon = position.coords.longitude;
+            function guardarUbicacion() {
+                fetch("/guardar_ubicacion", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ lat, lon, country })
+                });
 
-                    // Obtener país desde la IP
-                    const response = await fetch("https://ipapi.co/json/");
-                    const data = await response.json();
-                    country = data.country_name || "Desconocido";
-
-                    fetch("/guardar_ubicacion", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ lat, lon, country })
-                    });
-
-                    window.addEventListener("beforeunload", () => {
-                        fetch("/eliminar_ubicacion", { method: "POST" });
-                    });
-                }, async () => {
-                    // Si el usuario deniega la geolocalización, obtenemos la ubicación por IP
-                    const response = await fetch("https://ipapi.co/json/");
-                    const data = await response.json();
-                    lat = data.latitude;
-                    lon = data.longitude;
-                    country = data.country_name || "Desconocido";
-
-                    fetch("/guardar_ubicacion", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ lat, lon, country })
-                    });
-
-                    window.addEventListener("beforeunload", () => {
-                        fetch("/eliminar_ubicacion", { method: "POST" });
-                    });
+                window.addEventListener("beforeunload", () => {
+                    fetch("/eliminar_ubicacion", { method: "POST" });
                 });
             }
+
+            // Intentar obtener la ubicación por GPS
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        lat = position.coords.latitude;
+                        lon = position.coords.longitude;
+
+                        // Obtener país desde la IP
+                        try {
+                            const response = await fetch("https://ipinfo.io/json?token=TU_TOKEN");
+                            const data = await response.json();
+                            country = data.country || "Desconocido";
+                        } catch (error) {
+                            console.error("Error al obtener el país:", error);
+                        }
+
+                        guardarUbicacion();
+                    },
+                    async () => {
+                        // Si el usuario deniega la geolocalización, usar IP
+                        try {
+                            const response = await fetch("https://ipinfo.io/json?token=TU_TOKEN");
+                            const data = await response.json();
+                            [lat, lon] = data.loc.split(",").map(Number);
+                            country = data.country || "Desconocido";
+                        } catch (error) {
+                            console.error("Error al obtener ubicación por IP:", error);
+                        }
+
+                        guardarUbicacion();
+                    }
+                );
+            }
         }
+
         getLocation();
     """)
 
