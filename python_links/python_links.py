@@ -90,11 +90,11 @@ app = rx.App(
         rx.script(src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js", strategy="beforeInteractive"),
         rx.script(src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js", strategy="beforeInteractive"),
         # Then Leaflet
-        scripts(),
+        #scripts(),
         # Then your custom script
-        location(),
+        #location(),
         # Other scripts last
-        rx.script(
+        rx.el.script(
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6885891243934075",
             async_=True,
             crossorigin="anonymous"
