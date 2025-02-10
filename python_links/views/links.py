@@ -7,12 +7,12 @@ from python_links.routes import Route
 def links() -> rx.Component:
     return rx.vstack(
         title("Comunidad"),
-        link_button("Twitch", 
-                    "Directos de Lunes a viernes",
-                    "/icons/twitch.svg",
-                    const.TWITCH_URL,
-                    True
-                    ),
+        # link_button("Twitch", 
+        #             "Directos de Lunes a viernes",
+        #             "/icons/twitch.svg",
+        #             const.TWITCH_URL,
+        #             True
+        #             ),
         link_button("Youtube", 
                     "Videos Semanales",
                     "/icons/youtube.svg",
