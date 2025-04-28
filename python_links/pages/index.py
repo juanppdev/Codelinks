@@ -8,6 +8,10 @@ from python_links.views.links import links
 import python_links.styles.styles as styles
 from python_links.styles.styles import Size as Size
 
+class Analytics(rx.Component):
+    library = "@vercel/analytics/react"
+    tag = "HexCoAnalyticslorPicker"
+
 @rx.page(
         route= Route.INDEX.value,
         title=utils.index_title,
@@ -28,5 +32,6 @@ def index() -> rx.Component:
                 padding=Size.BIG.value
             )
         ),
-        footer()
+        footer(),
+        Analytics.create()
     )
