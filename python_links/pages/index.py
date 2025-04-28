@@ -21,7 +21,7 @@ def index() -> rx.Component:
                 src="https://www.googletagmanager.com/ns.html?id=GTM-M3WH6QJX",
                 height="0",
                 width="0",
-                style="display:none;visibility:hidden"
+                style={"display": "none", "visibility": "hidden"}
             )
         ),
         utils.lang(),
@@ -36,5 +36,5 @@ def index() -> rx.Component:
                 padding=Size.BIG.value
             )
         ),
-        footer()
+        footer(),
     )
