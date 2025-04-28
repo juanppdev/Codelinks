@@ -32,7 +32,7 @@ def links() -> rx.Component:
                     True
                     ),
         title("Recursos y más"), # Recursos y más
-        link_button("Dragon Ball Api", 
+        link_button("Dragón Ball Api", 
                     "Api de Dradon Ball",
                     "/icons/api.svg",
                     const.DRAGON_API,
