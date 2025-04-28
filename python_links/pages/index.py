@@ -8,11 +8,6 @@ from python_links.views.links import links
 import python_links.styles.styles as styles
 from python_links.styles.styles import Size as Size
 
-class Analytics(rx.Component):
-    """Componente Analytics de Vercel."""
-    library = "@vercel/analytics"
-    tag = "Analytics"
-
 @rx.page(
         route= Route.INDEX.value,
         title=utils.index_title,
@@ -33,6 +28,5 @@ def index() -> rx.Component:
                 padding=Size.BIG.value
             )
         ),
-        footer(),
-        Analytics.create()
+        footer()
     )
