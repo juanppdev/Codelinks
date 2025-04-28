@@ -109,5 +109,22 @@ app = rx.App(
             """,
             strategy="beforeInteractive",
         ),
+
+        # Script externo de gtag.js
+        rx.script(
+            src="https://www.googletagmanager.com/gtag/js?id=G-2LGD0S0QVP",
+            strategy="afterInteractive",
+            custom_attrs={"async": True}
+        ),
+        # Script inline de configuración
+        rx.script(
+            """
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2LGD0S0QVP');
+            """,
+            strategy="afterInteractive",
+        ),
     ]
 )
