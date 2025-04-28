@@ -8,7 +8,7 @@ if [ ! -f rxconfig.py ]; then
   reflex init
 fi
 
-reflex export --frontend-only
+reflex export
 if [ -f frontend.zip ]; then
   rm -rf public
   unzip frontend.zip -d public
