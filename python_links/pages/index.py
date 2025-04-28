@@ -16,6 +16,14 @@ from python_links.styles.styles import Size as Size
 )
 def index() -> rx.Component:
     return rx.box(
+        rx.el.noscript(
+            rx.el.iframe(
+                src="https://www.googletagmanager.com/ns.html?id=GTM-M3WH6QJX",
+                height="0",
+                width="0",
+                style="display:none;visibility:hidden"
+            )
+        ),
         utils.lang(),
         navbar(),
         rx.center(
@@ -28,13 +36,5 @@ def index() -> rx.Component:
                 padding=Size.BIG.value
             )
         ),
-        footer(),
-        rx.el.noscript(
-            rx.el.iframe(
-                src="https://www.googletagmanager.com/ns.html?id=GTM-M3WH6QJX",
-                height="0",
-                width="0",
-                style="display:none;visibility:hidden"
-            )
-        ),
+        footer()
     )
