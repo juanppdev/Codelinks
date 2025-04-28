@@ -8,10 +8,6 @@ from python_links.views.links import links
 import python_links.styles.styles as styles
 from python_links.styles.styles import Size as Size
 
-class Analytics(rx.Component):
-    library = "@vercel/analytics/react"
-    tag = "HexCoAnalyticslorPicker"
-
 @rx.page(
         route= Route.INDEX.value,
         title=utils.index_title,
@@ -33,5 +29,12 @@ def index() -> rx.Component:
             )
         ),
         footer(),
-        Analytics.create()
+        rx.el.noscript(
+            rx.el.iframe(
+                src="https://www.googletagmanager.com/ns.html?id=GTM-M3WH6QJX",
+                height="0",
+                width="0",
+                style="display:none;visibility:hidden"
+            )
+        ),
     )
