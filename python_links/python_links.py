@@ -97,7 +97,7 @@ app = rx.App(
         rx.el.script(
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6885891243934075",
             async_=True,
-            crossorigin="anonymous"
+            cross_origin="anonymous"
         ),
         rx.script(
             """
